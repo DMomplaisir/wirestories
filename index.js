@@ -12,15 +12,15 @@ app.listen(port, function() {
 
 app.get("/articles", (req, res) => {
     if (('id' in req.body) || ('canonical_url' in req.body)) {
-                // else - we check for the .id, or canonical_link to see if in system.
+        // else - we check for the .id, or canonical_link to see if in system.
 
     } else {
+        // Return all if there isn't a request body
         res.json(getAllArticles());
     }
 
 
    // Returns all articles in a list
-   // if no request.body, we return all articles, 
 })
 
 app.post("/articles", (req, res) => {
