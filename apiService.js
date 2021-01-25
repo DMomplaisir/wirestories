@@ -9,6 +9,7 @@ function isSameArticle(articleOne, articleTwo){
     return (articleOne.id === articleTwo.id && articleOne.canonical_url === articleTwo.canonical_url)
 }
 async function createArticle(articleObject) {
+    let error;
     const articleExists = await Article.findOne({ $or: [
         {id: articleObject.id},
         {canonical_url: articleObject.canonical_url}
@@ -19,7 +20,10 @@ async function createArticle(articleObject) {
             await foundArticle.save()
             return foundArticle;
         }
-        throw new Error("Article exists already")
+        // Return found article
+        error = new Error(`Our system already has an article ${articleExists.id}, ${articleExists.canonical_url}`)
+        error.statusCode = 409;
+        throw error;
     }
     
     const article = new Article(articleObject);
@@ -28,13 +32,15 @@ async function createArticle(articleObject) {
 
 }
 
-// async function getArticle(searchBody){
-//     if (id in searchBody){
 
-//     } else {
+async function getArticleById(id){
+   return await article.findOne({$id: id}).exec();
+}
+async function getArticleByCanonicalURL(canoncial_url){
+    return await article.findOne({$canoncial_Url: canoncial_url}).exec();
+}
 
-//     }
-// }
-
+exports.getArticleByCanonicalURL = getArticleByCanonicalURL
+exports.getArticleById = getArticleById
 exports.getAllArticles = getAllArticles;
 exports.createArticle = createArticle;
