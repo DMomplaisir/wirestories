@@ -1,6 +1,6 @@
 const express = require("express");
 const { isEmpty } = require("./util");
-const { getAllArticles } = require("./apiService");
+const { getAllArticles, createArticle } = require("./apiService");
 const connect = require("./connect");
 const app = express();
 
@@ -11,7 +11,6 @@ app.use(express.json());
 
 app.listen(port, async function() {
     console.log('Coolest job app ever!')
-
     await connect();
 })
 
@@ -30,8 +29,9 @@ app.get("/articles", async (req, res) => {
    // Returns all articles in a list
 })
 
-app.post("/articles", (req, res) => {
-
+app.post("/articles", async (req, res) => {
+    const article = req.body.article; 
+    await createArticle();
     // Accept an request.body, confirm if valid, and create article in database
     console.log(request.body);
 })
