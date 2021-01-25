@@ -1,6 +1,10 @@
 const express = require("express")
-const app = express
+const app = express()
+var port = 8080
 
+app.listen(port, function() {
+    console.log('Coolest job app ever!')
+})
 
 app.get("/articles", (req, res) => {
    // Returns all articles in a list
