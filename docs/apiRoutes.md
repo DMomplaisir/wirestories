@@ -51,7 +51,7 @@ METHOD: `GET /articles`
 
 Get a single article. An id is an alphanumeric series of charcathers with no spaces, only dashes (not em dashes, haha)
 
-METHOD: `GET /articles/id`
+METHOD: `GET /articles`
 
 ### Success Response
 REQUEST BODY:
@@ -96,7 +96,7 @@ RESPONSE CODE: ```200 OK```
 
 Get a single article. An canoncial link contains .html at the end. 
 
-METHOD: `GET /articles/canoncial_link`
+METHOD: `GET /articles`
 
 ### Success Response
 REQUEST BODY:
