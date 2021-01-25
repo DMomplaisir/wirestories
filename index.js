@@ -1,16 +1,23 @@
 const express = require("express");
 const { isEmpty } = require("./util");
 const { getAllArticles } = require("./apiService");
-const app = express()
+const connect = require("./connect");
+const app = express();
+
+
 var port = 8080
 
 app.use(express.json());
 
-app.listen(port, function() {
+app.listen(port, async function() {
     console.log('Coolest job app ever!')
+
+    await connect();
 })
 
-app.get("/articles", (req, res) => {
+app.get("/articles", async (req, res) => {
+    await getAllArticles();
+
     if (('id' in req.body) || ('canonical_url' in req.body)) {
         // else - we check for the .id, or canonical_link to see if in system.
 

@@ -1,9 +1,19 @@
-The Atlantic Wire Stories Tool
+# The Atlantic Wire Stories Tool
 
 A small Node.js application accepting wire stories, and creates entries in our MongoDB database. 
 
 
+
+
+## How to run! 
+Install
+- Docker
+- Docker Compose
+To run, simply 
+```docker-compose up -d```
+
 ---
+
 An article will be 
 	id: alphanumeric || Required
 	slug: string (no spaces)
